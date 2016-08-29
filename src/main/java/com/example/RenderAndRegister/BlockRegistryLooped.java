@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  * just for less lines of code, but also how it makes registering renderers for 
  * blocks that much easier
  */
-public class LoopedBlockRegistry {
+public class BlockRegistryLooped {
 	
 	public static Block TESTBLOCK;
 	

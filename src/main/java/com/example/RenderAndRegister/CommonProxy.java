@@ -12,7 +12,7 @@ public abstract class CommonProxy {
 		//Here we register our blocks and items
 		
 		//SimpleBlockRegistry.initRegistryBlocks();
-		LoopedBlockRegistry.initRegistryBlocks();
+		BlockRegistryLooped.initRegistryBlocks();
 		
 		/**
 		 * LoopedBlockRegistry is favoured, because you only need to add the block to the

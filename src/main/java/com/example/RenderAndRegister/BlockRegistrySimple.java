@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  * LoopedBlockRegistry also features something that will make it MUCH easier to automatically render each block.
  */
 
-public class SimpleBlockRegistry {
+public class BlockRegistrySimple {
 
 	public static Block TESTBLOCK;
 	

@@ -5,13 +5,13 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 
-public class LoopedRenderRegistry {
+public class RenderRegistryLooped {
 
 	public static void registerBlockRenderer(){
 		
 		//Time for another for-loop. Like last time, we will loop
 		//through the same loop we used to register the blocks
-		for(Block block : LoopedBlockRegistry.BlockList){
+		for(Block block : BlockRegistryLooped.BlockList){
 			
 			/**
 			 * DO NOT USE Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));

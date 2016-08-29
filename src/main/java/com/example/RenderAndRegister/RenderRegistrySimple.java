@@ -5,11 +5,11 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 
-public class SimpleRenderRegistry {
+public class RenderRegistrySimple {
 	
 	
 	public static void registerRenderers(){
-		register(SimpleBlockRegistry.TESTBLOCK);
+		register(BlockRegistrySimple.TESTBLOCK);
 	}
 	
 	public static void register(Block block){

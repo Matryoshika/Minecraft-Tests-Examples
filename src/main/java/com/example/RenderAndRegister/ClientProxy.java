@@ -12,7 +12,7 @@ public class ClientProxy extends CommonProxy{
 		//we know the blocks & items have been initialized in the commonproxy already, so let's register our renderers
 		
 		//SimpleRenderRegistry.registerRenderers();
-		LoopedRenderRegistry.registerBlockRenderer();
+		RenderRegistryLooped.registerBlockRenderer();
 		
 		/**
 		 * LoopedRenderRegistry is favoured, because it's set-and-forget. As long as you
