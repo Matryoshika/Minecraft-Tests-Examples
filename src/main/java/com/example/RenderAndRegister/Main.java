@@ -5,19 +5,25 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = RenderAndRegister.MODID, name = "RenderAndRegister", version = RenderAndRegister.VERSION)
-public class RenderAndRegister{
+@Mod(modid = Main.MODID, name = "RenderAndRegister", version = Main.VERSION)
+public class Main{
 	
     public static final String MODID = "renderandregister";
     public static final String VERSION = "0.0";
     
     
     @Instance(MODID)
-    public static RenderAndRegister instance;
+    public static Main instance;
     
     @SidedProxy
     public static CommonProxy proxy;
+    
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event){
+		proxy.preInit(event);
+	}
     
     @EventHandler
     public void init(FMLInitializationEvent event){
