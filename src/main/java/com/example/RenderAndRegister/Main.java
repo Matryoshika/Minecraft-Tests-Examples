@@ -20,12 +20,12 @@ public class Main{
     @SidedProxy
     public static CommonProxy proxy;
     
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event){
-		//This is where both Registering, and Rendering, happens.
-		//Please proceed to look over the Simple, then Looped Registy
-		//Then proceed to look over the Simple, then Looped Render-registry
-		proxy.preInit(event);
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event){
+    	//This is where both Registering, and Rendering, happens.
+    	//Please proceed to look over the Simple, then Looped Registy
+    	//Then proceed to look over the Simple, then Looped Render-registry
+    	proxy.preInit(event);
 	}
     
     @EventHandler
