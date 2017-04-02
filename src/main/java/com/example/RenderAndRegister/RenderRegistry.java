@@ -27,7 +27,7 @@ public class RenderRegistry {
 			 * It is *incredibly* prone to issues. The only reason Vanilla rendering works, is because of the extensive knowledge of the system, and the years
 			 * of expertice the coders of Mojang have.
 			 * 
-			 * Instead, use this; It is provided by forge, and has to be called in preInit: V
+			 * Instead, use this; It is provided by forge, and has to be called in before or during preInit: V
 			 */
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
 			
