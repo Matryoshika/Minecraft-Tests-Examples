@@ -17,15 +17,13 @@ public class Main{
     @Instance(MODID)
     public static Main instance;
     
-    @SidedProxy
+    @SidedProxy(clientSide = "com.example.RenderAndRegister.ClientProxy", serverSide = "com.example.RenderAndRegister.CommonProxy")
     public static CommonProxy proxy;
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent event){
-    	//This is where both Registering, and Rendering, happens.
-    	//Please proceed to look over the Simple, then Looped Registy
-    	//Then proceed to look over the Simple, then Looped Render-registry
-    	proxy.preInit(event);
+    	//What is this? Why isn't blocks/items being registered here?
+    	//Go and have a look over at the BlockRegistry & RenderRegistry classes!
 	}
     
     @EventHandler
