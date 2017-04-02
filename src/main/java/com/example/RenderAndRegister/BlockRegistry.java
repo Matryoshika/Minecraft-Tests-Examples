@@ -56,6 +56,7 @@ public class BlockRegistry {
 	//Don't forget to register the ItemBlock variant (When held, or in an inventory, a block is an "item")
 	//We do not need to call prepareBlocks() in this method, because Blocks are registered before items.
 	//Thus, our registerBlocks method has already happened.
+	//ItemBlocks are of course not required to be made for Items.
 	@SubscribeEvent
 	public static void registerItemBlocks(RegistryEvent.Register<Item> event){
 		for(Block block : BlockList){
