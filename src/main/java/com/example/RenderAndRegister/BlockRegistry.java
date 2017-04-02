@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -48,12 +49,19 @@ public class BlockRegistry {
 		//For-each-loop. Essentially, for each and every block we find in the BlockList, 
 		//we will call it "block", and register it.
 		for(Block block : BlockList){
-			GameRegistry.register(block);
-			
-			//Don't forget to register the ItemBlock variant (When held, or in an inventory, a block is an "item")
+			event.getRegistry().register(block);
+		}
+	}
+	
+	//Don't forget to register the ItemBlock variant (When held, or in an inventory, a block is an "item")
+	//We do not need to call prepareBlocks() in this method, because Blocks are registered before items.
+	//Thus, our registerBlocks method has already happened.
+	@SubscribeEvent
+	public static void registerItemBlocks(RegistryEvent.Register<Item> event){
+		for(Block block : BlockList){
 			ItemBlock iblock = new ItemBlock(block);
 			iblock.setRegistryName(block.getRegistryName());
-			GameRegistry.register(iblock);
+			event.getRegistry().register(iblock);
 		}
 	}
 
