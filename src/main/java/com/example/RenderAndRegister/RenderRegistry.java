@@ -7,11 +7,18 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Just as we did with the BlockRegistry, we have to use the annotation to tell
  * Forge "HEY, when you are ready to register models, use this!"
+ * However, as this class uses Client-side only code, we have to make sure that it
+ * will only exist on the Client, therefore we use the @SideOnly annotation.
+ * Alternatively, you could do this inside your Client-Proxy instead of calling
+ * @SideOnly.
  */
+@SideOnly(Side.CLIENT)
 @EventBusSubscriber
 public class RenderRegistry {
 
@@ -25,7 +32,7 @@ public class RenderRegistry {
 		 * ModelResourceLocation(block.getRegistryName(), "inventory")); It is
 		 * *incredibly* prone to issues. The only reason Vanilla rendering
 		 * works, is because of the extensive knowledge of the system, and the
-		 * years of expertice the coders of Mojang have.
+		 * years of expertise the coders of Mojang have.
 		 * 
 		 * Instead, use ModelLoader; It is provided by forge, and has to be
 		 * called before or during preInit: V
