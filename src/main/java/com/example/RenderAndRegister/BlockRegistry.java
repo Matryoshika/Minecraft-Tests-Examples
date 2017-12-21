@@ -61,6 +61,7 @@ public class BlockRegistry {
 	//We do not need to call prepareBlocks() in this method, because Blocks are registered before items.
 	//Thus, our registerBlocks method has already happened.
 	//ItemBlocks are of course not required to be made for Items.
+	//Normal items should also be registered here in the same fashion as we did with blocks.
 	@SubscribeEvent
 	public static void registerItemBlocks(Register<Item> event){
 		
