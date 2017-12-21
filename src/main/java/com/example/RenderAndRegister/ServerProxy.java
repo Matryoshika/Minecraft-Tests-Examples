@@ -7,7 +7,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ServerProxy {
 	
-	public void preInit(FMLPreInitializationEvent event){
-	}
+	public void preInit(FMLPreInitializationEvent event){}
 
 }
