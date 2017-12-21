@@ -17,7 +17,7 @@ public class Main{
     @Instance(MODID)
     public static Main instance;
     
-    @SidedProxy(clientSide = "com.example.RenderAndRegister.ClientProxy", serverSide = "com.example.RenderAndRegister.CommonProxy")
+    @SidedProxy(clientSide = "com.example.RenderAndRegister.ClientProxy", serverSide = "com.example.RenderAndRegister.ServerProxy")
     public static ServerProxy proxy;
     
     @EventHandler
