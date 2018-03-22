@@ -10,79 +10,60 @@ import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 /**
- * Here we will assign blocks to a collection, and then use said collection to
- * register, and later, also render each block.
- * 
- * The same functionality can be used for Items.
- * 
- * Please do note the Annotation below here. It is required because we will
- * be subscribing to an event, <b>before</b> preInit.
+ * Please do note the Annotation below here. It is required because we will be
+ * subscribing to an event, <b>before</b> preInit.
  */
 @EventBusSubscriber
 public class BlockRegistry {
-	
-	public static Block TESTBLOCK;
-	
-	
-	//We create a list that holds each and every block we make. When we make a new block, 
-	//we only need to add the block to this list.
-	public static Set<Block> blocks = new HashSet<Block>();
-	
-	public static void prepareBlocks(){
-		//Using the second constructor we made in the TestBlock class.
-		blocks.add(TESTBLOCK = new TestBlock());
 
+	/*
+	 * An ObjectHolder annotation will supply the underlying field or class with an
+	 * object. Because we use an inner class, we only need to supply a mod-id, which
+	 * states that all fields inside of it will be objects from the specified mod.
+	 * To specify a specific object, you need to state what type, and what name to
+	 * look for. The type, below here seen as "Block" states that this field should
+	 * come from the Block-Registry. The field's name must equal the wanted object's
+	 * RegistryName, minus the domain (modid).
+	 */
+	@ObjectHolder(value = Main.MODID)
+	public static class Objects {
+
+		public static final Block test_block = null;
 	}
-	
-	//This method will be called without us calling it. This is because 
-	//Forge calls it -for- us, when the RegistryEvent happens. This is why
-	//we had to use the @Mod.EventBusSubscriber at the top of the class.
+
+	// This method will be called without us calling it. This is because
+	// Forge calls it -for- us, when the RegistryEvent happens. This is why
+	// we had to use the @Mod.EventBusSubscriber at the top of the class.
 	@SubscribeEvent
-	public static void registerBlocks(Register<Block> event){
-		
-		//We make sure that the list gets filled with our blocks.
-		prepareBlocks();
-		
-		//For-each-loop. Essentially, for each and every block we find in the BlockList, 
-		//we will call it "block", and register it.
-		for(Block block : blocks){
-			event.getRegistry().register(block);
-		}
-		
-		//OR we can also use Java8 Lambda expressions here.
-		//Only use either the for-loop, or the forEach expression. Not both (as that would register it twice)
-		blocks.forEach(event.getRegistry()::register);
+	public static void registerBlocks(Register<Block> event) {
+
+		event.getRegistry().registerAll(new TestBlock());
 	}
-	
-	//Don't forget to register the ItemBlock variant (When held, or in an inventory, a block is an "item")
-	//We do not need to call prepareBlocks() in this method, because Blocks are registered before items.
-	//Thus, our registerBlocks method has already happened.
-	//ItemBlocks are of course not required to be made for Items.
-	//Normal items should also be registered here in the same fashion as we did with blocks.
+
+	/*
+	 * Don't forget to register the ItemBlock variant (When held, or in an
+	 * inventory, a block is an "item") We do not need to call prepareBlocks() in
+	 * this method, because Blocks are registered before items. Thus, our
+	 * registerBlocks method has already happened. ItemBlocks are of course not
+	 * required to be made for Items. Normal items should also be registered here in
+	 * the same fashion as we did with blocks.
+	 */
 	@SubscribeEvent
-	public static void registerItemBlocks(Register<Item> event){
-		
-		for(Block block : blocks){
-			ItemBlock iblock = new ItemBlock(block);
-			iblock.setRegistryName(block.getRegistryName());
-			event.getRegistry().register(iblock);
-		}
-		
-		
-		//OR we can do this in one line (we split it in two here, to make it easier to read all at once, but the split is only syntactical sugar)
-		// by using another lambda expression again
-		//What is done here is: for each block in this collection(that contains blocks! As infered by the type-parameter aka the <Block> part), 
-		//create a new ItemBlock and set it's RegistryName to the block's RegistryName. 
-		//Put this new ItemBlock into a new list, and for each thing in this new list, register
-		blocks.stream().map(block -> new ItemBlock(block).setRegistryName(block.getRegistryName()))
-		.collect(Collectors.toList()).forEach(event.getRegistry()::register);
-		
-		
-		//Choose one way, and stick to it. For-loops are simpler, but Lambda's are good to use, as they can simplify several lines of code into a single one.
-		
+	public static void registerItemBlocks(Register<Item> event) {
+
+		event.getRegistry().registerAll(getItemBlock(Objects.test_block));
+	}
+
+	/*
+	 * A small utility method to create an ItemBlock from a block, which we can call
+	 * without getting so much clutter inside the Registry::registerAll method
+	 * above.
+	 */
+	public static Item getItemBlock(Block block) {
+		return new ItemBlock(block).setRegistryName(block.getRegistryName());
 	}
 
 }
